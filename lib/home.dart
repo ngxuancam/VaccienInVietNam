@@ -21,16 +21,53 @@ class _MyAppState extends State<MyApp> {
           ),
           appBar: AppBar(
             backgroundColor: Color.fromRGBO(120, 40, 103, 1),
-            leading: IconButton(
-              icon: const Icon(
-                Icons.menu,
-                semanticLabel: 'menu',
-              ),
-              onPressed: () {
-                print('Menu button');
-              },
-            ),
+            automaticallyImplyLeading: true,
+            // leading: IconButton(
+            //   icon: const Icon(
+            //     Icons.menu,
+            //     semanticLabel: 'menu',
+            //   ),
+            //   onPressed: () {
+            //     print('Menu button');
+            //   },
+            // ),
+
             title: Text('Vaccine in Viet Nam'),
+          ),
+          drawer: Drawer(
+            child: ListView(
+              children: <Widget>[
+                // ignore: prefer_const_constructors
+                DrawerHeader(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment(0, 1),
+                        end: Alignment(-1, 0),
+                        colors: [
+                          Color.fromRGBO(46, 48, 145, 1),
+                          Color.fromRGBO(39, 80, 147, 1)
+                        ]),
+                  ),
+                  // ignore: prefer_const_constructors
+                  child: Text(
+                    '''Infomation of caccine in 
+              Viet Nam''',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                    ),
+                  ),
+                ),
+                ListTile(
+                  title: const Text('Só lượng người được tiêm theo ngày'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: const Text('Danh sách các nơi được tiêm'),
+                  onTap: () {},
+                ),
+              ],
+            ),
           ),
           body: SingleChildScrollView(
             child: Column(
@@ -47,6 +84,8 @@ class _MyAppState extends State<MyApp> {
                   height: MediaQuery.of(context).size.height - 220,
                   child: LineChartWidget(),
                 ),
+                const SizedBox(height: 10),
+                Center(child: Text('Số lượng người được tiêm theo ngày')),
               ],
             ),
           )),
