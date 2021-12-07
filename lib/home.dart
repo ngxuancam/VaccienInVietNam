@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'model/total_info.dart';
 import 'package:flutter/material.dart';
 import 'widget/line_chart_widget.dart';
 
@@ -42,7 +42,11 @@ class _MyAppState extends State<MyApp> {
             backgroundColor: Color.fromRGBO(39, 51, 147, 1),
             child: Icon(Icons.refresh),
             onPressed: () {
-              _gotoHomePage();
+              setState(() {
+                bodyWidget = bodyWidget;
+                title = title;
+              });
+              ;
             },
           ),
           appBar: AppBar(
@@ -65,14 +69,29 @@ class _MyAppState extends State<MyApp> {
                         ]),
                   ),
                   // ignore: prefer_const_constructors
-                  child: Text(
-                    '''Infomation of caccine in 
-              Viet Nam''',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: 70,
+                          width: 200,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('assets/images/logo.png'),
+                                fit: BoxFit.fitWidth),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
+                ),
+                ListTile(
+                  title: const Text('Thông tin chính về số mũi tim'),
+                  onTap: () {
+                    _gotoHomePage();
+                    _closeDrawer(300);
+                  },
                 ),
                 ListTile(
                   title: const Text('Só lượng người được tiêm theo ngày'),
@@ -124,7 +143,20 @@ class VaccineByDay extends StatelessWidget {
   }
 }
 
-class TotalInfoState extends StatelessWidget {
+class TotalInfoState extends StatefulWidget {
+  @override
+  State<TotalInfoState> createState() => _TotalInfoStateState();
+}
+
+class _TotalInfoStateState extends State<TotalInfoState> {
+  //late Future<TotalInfo> futureTotalInfo;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   futureTotalInfo = TotalInfo.getTotalInfofromXML();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -150,14 +182,41 @@ class TotalInfoState extends StatelessWidget {
                         height: 1),
                   )),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 30),
+                // FutureBuilder<TotalInfo>(
+                //   future: futureTotalInfo,
+                //   builder: (context, snapshot) {
+                //     if (snapshot.hasData) {
+                //       return Padding(
+                //         padding: EdgeInsets.only(top: 30),
+                //         child: Center(
+                //             child: Text(
+                //           '127926746',
+                //           textAlign: TextAlign.center,
+                //           style: TextStyle(
+                //               color: Color.fromRGBO(120, 40, 103, 1),
+                //               fontFamily: 'SF Pro Display',
+                //               fontSize: 40,
+                //               fontWeight: FontWeight.bold,
+                //               height: 1),
+                //         )),
+                //       );
+                //     } else if (snapshot.hasError) {
+                //       return Text('${snapshot.error}');
+                //     }
+
+                //     // By default, show a loading spinner.
+                //     return const CircularProgressIndicator();
+                //   },
+                // ),
+
+                const Padding(
+                  padding: EdgeInsets.only(top: 10),
                   child: Center(
                       child: Text(
-                    '475561',
+                    '846397',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Color.fromRGBO(39, 51, 147, 1),
+                        color: Color.fromRGBO(120, 40, 103, 1),
                         fontFamily: 'SF Pro Display',
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
@@ -185,14 +244,40 @@ class TotalInfoState extends StatelessWidget {
                         height: 1),
                   )),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 30),
+                // FutureBuilder<TotalInfo>(
+                //   future: futureTotalInfo,
+                //   builder: (context, snapshot) {
+                //     if (snapshot.hasData) {
+                //       return Padding(
+                //         padding: EdgeInsets.only(top: 30),
+                //         child: Center(
+                //             child: Text(
+                //           '127926746',
+                //           textAlign: TextAlign.center,
+                //           style: TextStyle(
+                //               color: Color.fromRGBO(120, 40, 103, 1),
+                //               fontFamily: 'SF Pro Display',
+                //               fontSize: 40,
+                //               fontWeight: FontWeight.bold,
+                //               height: 1),
+                //         )),
+                //       );
+                //     } else if (snapshot.hasError) {
+                //       return Text('${snapshot.error}');
+                //     }
+
+                //     // By default, show a loading spinner.
+                //     return const CircularProgressIndicator();
+                //   },
+                // ),
+                const Padding(
+                  padding: EdgeInsets.only(top: 10),
                   child: Center(
                       child: Text(
-                    '127926746',
+                    '128773142',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Color.fromRGBO(120, 40, 103, 1),
+                        color: Color.fromRGBO(39, 51, 147, 1),
                         fontFamily: 'SF Pro Display',
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
