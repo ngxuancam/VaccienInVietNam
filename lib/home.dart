@@ -156,7 +156,27 @@ class _TotalInfoStateState extends State<TotalInfoState> {
   //   super.initState();
   //   futureTotalInfo = TotalInfo.getTotalInfofromXML();
   // }
+  late Map totalData = {
+    "allocatedDate": 0, 
+    "vaccineTotal": 0, 
+    "vaccineAllocation": 0, 
+    "objectInjection": 0, 
+    "totalPopulation": 0, 
+    "totalOneInjected": 0, 
+    "totalTwiceInjected": 0
+    };
 
+  @override
+    void initState (){
+      super.initState();
+      fetchData();
+    }
+  fetchData () async{
+    Map data = await TotalInfo.getTotalInfofromXML();
+    setState(() {
+      totalData = data;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -209,11 +229,11 @@ class _TotalInfoStateState extends State<TotalInfoState> {
                 //   },
                 // ),
 
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(top: 10),
                   child: Center(
                       child: Text(
-                    '846397',
+                    totalData['totalPopulation'].toString(),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Color.fromRGBO(120, 40, 103, 1),
@@ -270,11 +290,11 @@ class _TotalInfoStateState extends State<TotalInfoState> {
                 //     return const CircularProgressIndicator();
                 //   },
                 // ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(top: 10),
                   child: Center(
                       child: Text(
-                    '128773142',
+                    totalData['totalOneInjected'].toString(),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Color.fromRGBO(39, 51, 147, 1),

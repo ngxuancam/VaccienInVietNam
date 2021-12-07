@@ -34,7 +34,7 @@ class TotalInfo {
     }
   }
 
-  static Future<TotalInfo> getTotalInfofromXML() async {
+  static Future<Map> getTotalInfofromXML() async {
     final url = Uri.parse(
         'https://tiemchungcovid19.gov.vn/api/public/dashboard/vaccination-statistics/get-detail-latest');
     final request = await HttpClient().getUrl(url);
@@ -42,56 +42,56 @@ class TotalInfo {
     int objectInjection = 0;
     int totalPopulation = 0;
     DateTime allocatedDate = DateTime.now();
+    Map json = {};
     await response
         .transform(utf8.decoder)
         .toXmlEvents()
         .normalizeEvents()
         .forEachEvent(
             onText: (event) => {
-                  print(event.text),
-                  objectInjection = int.parse(event.text.substring(
-                      event.text.indexOf("objectInjection") +
-                          "objectInjection".length +
-                          4,
-                      event.text.indexOf("objectInjection") +
-                          "objectInjection".length +
-                          3 +
-                          event.text
-                              .substring(event.text.indexOf("objectInjection") +
-                                  "objectInjection".length +
-                                  3)
-                              .indexOf(","))),
-                  totalPopulation = int.parse(event.text.substring(
-                      event.text.indexOf("totalPopulation") +
-                          "totalPopulation".length +
-                          4,
-                      event.text.indexOf("totalPopulation") +
-                          "totalPopulation".length +
-                          3 +
-                          event.text
-                              .substring(event.text.indexOf("totalPopulation") +
-                                  "totalPopulation".length +
-                                  3)
-                              .indexOf(","))),
-                  allocatedDate = DateTime.parse(event.text
-                      .substring(
-                          event.text.indexOf("allocatedDate") +
-                              "allocatedDate".length +
-                              4,
-                          event.text.indexOf("allocatedDate") +
-                              "allocatedDate".length +
-                              3 +
-                              event.text
-                                  .substring(
-                                      event.text.indexOf("allocatedDate") +
-                                          "allocatedDate".length +
-                                          3)
-                                  .indexOf(","))
-                      .replaceAll('"', '')),
+                  // print(event.text),
+                  json = jsonDecode(event.text),
+                  // objectInjection = int.parse(event.text.substring(
+                  //     event.text.indexOf("objectInjection") +
+                  //         "objectInjection".length +
+                  //         4,
+                  //     event.text.indexOf("objectInjection") +
+                  //         "objectInjection".length +
+                  //         3 +
+                  //         event.text
+                  //             .substring(event.text.indexOf("objectInjection") +
+                  //                 "objectInjection".length +
+                  //                 3)
+                  //             .indexOf(","))),
+                  // totalPopulation = int.parse(event.text.substring(
+                  //     event.text.indexOf("totalPopulation") +
+                  //         "totalPopulation".length +
+                  //         4,
+                  //     event.text.indexOf("totalPopulation") +
+                  //         "totalPopulation".length +
+                  //         3 +
+                  //         event.text
+                  //             .substring(event.text.indexOf("totalPopulation") +
+                  //                 "totalPopulation".length +
+                  //                 3)
+                  //             .indexOf(","))),
+                  // allocatedDate = DateTime.parse(event.text
+                  //     .substring(
+                  //         event.text.indexOf("allocatedDate") +
+                  //             "allocatedDate".length +
+                  //             4,
+                  //         event.text.indexOf("allocatedDate") +
+                  //             "allocatedDate".length +
+                  //             3 +
+                  //             event.text
+                  //                 .substring(
+                  //                     event.text.indexOf("allocatedDate") +
+                  //                         "allocatedDate".length +
+                  //                         3)
+                  //                 .indexOf(","))
+                  //     .replaceAll('"', '')),
                 });
-    return TotalInfo(
-        allocatedDate: allocatedDate,
-        objectInjection: objectInjection,
-        totalPopulation: totalPopulation);
+    // print(json);
+    return json;
   }
 }
