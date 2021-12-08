@@ -3,8 +3,9 @@
 The project was made for the contest in HCM Devfest 2021.
 
 ## Getting Started
+As we all know about the Covid - 19 pandemic, vaccince is the most efficient way to win this virus dimension. Understandably, people care about vaccinces since it can decide a human life. Therefore, there are more and more applications in updating peoples' vaccinated status as they're all having their phone with them all the time. However, we found out that these applications just stop in whether people vaccinated or not. 
 
-Inspired by the website of the Ministry of Health, we have created an application that allows users to see if there is a preliminary assessment of vaccines in Vietnam.
+And accidentally , we passed by the API of the Ministry of Health telling about our vaccines information of all locations in our country. At that moment without hesitation, we decide to create an application that allows users to see if there is a preliminary assessment of vaccines in Vietnam. We hope this can bring a specific picture to provide more information for users to help them vaccincated or just simple is to observe the status of vaccines in Vietnam.
 
 ## List of features
 1. Show the number of people injected in the last 10 days.
